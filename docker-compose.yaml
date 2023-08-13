@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  db:
+    container_name: postgres
+    image: postgres:alpine3.18
+    environment:
+      POSTGRES_USER: wissem
+      POSTGRES_PASSWORD: wissem123
+      PGDATA: /data/postgres
+    volumes:
+      - db:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - db
+    restart: unless-stopped
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  db:
